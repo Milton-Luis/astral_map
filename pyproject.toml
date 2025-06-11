@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "astral-map"
+version = "0.1.0"
+description = ""
+authors = ["Milton-Luis <miltonluis138@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+flask = "^3.1.1"
+python-docx = "^1.1.2"
+dynaconf = "^3.2.11"
+python-dotenv = "^1.1.0"
+flask-wtf = "^1.2.2"
+pypdf = "^5.6.0"
+reportlab = "^4.4.1"
+
+
+[tool.poetry.group.development.dependencies]
+isort = "^6.0.1"
+ruff = "^0.11.12"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

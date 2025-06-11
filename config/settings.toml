@@ -1,0 +1,27 @@
+[default]
+
+RESOURCES_PATH = "app/resources/"
+NAKSHATRA_CONTENT = "nakshatra/nakshatras.pdf"
+CAPA_CONTENT = "capa.pdf"
+VEDIC_ASTROLOGY_BASE_TEXT = "base_text/vedic_astrology_base_text.pdf"
+NAKSHATRA_BASE_TEXT = "base_text/nakshatra_base_text.pdf"
+PLANETPHALA_BASE_TEXT = "base_text/planetphala_base_text.pdf"
+
+# [PDF SETTINGS]
+PDF_TITLE = "Astral Map"
+PDF_AUTHOR = "Pessoa 1"
+PDF_SYSTEM_CREATOR = "Astral Map System"
+
+# [PDF styles SETTINGS]
+FIRST_LETTER_INDENT_MM = 10
+TITLE_FONT_NAME = "Helvetica-Bold"
+TITLE_FONT_SIZE = 14
+TEXT_FONT_NAME = "Helvetica"
+TEXT_FONT_SIZE = 12
+
+
+
+
+# [development]
+
+# path_test = "caminho/para/teste/dev"

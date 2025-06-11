@@ -1,0 +1,92 @@
+* {
+	margin: 0;
+	padding: 0;
+	user-select: None;
+	box-sizing: border-box;
+	/* overflow: hidden; */
+}
+body {
+	max-width: 100%;
+	/* background: linear-gradient(to right, black, gray); */
+}
+
+main {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+	margin: 10px;
+
+	max-width: inherit;
+}
+.mirror-forms {
+	width: 570px;
+	height: auto;
+	border: 1px solid gray;
+	border-radius: 25px;
+	padding: 2rem;
+	background: rgba(255, 255, 255, 0.23);
+	border-radius: 16px;
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+	backdrop-filter: blur(9.2px);
+	-webkit-backdrop-filter: blur(9.2px);
+	border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.form-fields-group {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	font-size: 15pt;
+	width: 100%;
+}
+
+.form-field {
+	display: flex;
+	flex-direction: column;
+}
+.form-fields-group > .form-field:not(.field-group):first-child > .form-control {
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+	border-bottom-left-radius: 2px;
+	border-bottom-right-radius: 2px;
+}
+
+.form-fields-group
+	> .form-field:not(.field-group):nth-child(3)
+	> .form-control {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: flex-start;
+	padding: 5px 0px;
+	gap: 10px;
+	height: auto;
+}
+
+.form-control {
+	height: 35px;
+	padding: 5px 8px;
+	border-radius: 15px;
+}
+
+.form-control li {
+	display: flex;
+	flex-direction: column-reverse;
+}
+
+.field-group {
+	display: flex;
+	gap: 12px;
+}
+
+.field-group .form-field {
+	display: flex;
+	justify-content: space-around;
+	width: 100%;
+}
+
+.submit {
+	cursor: pointer;
+	font-size: 12pt;
+	height: 50px;
+	border-radius: 25px;
+}

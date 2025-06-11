@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<section class="mirror-forms">
+    <form action="{{ url_for('main.index') }}" method="POST">
+        {{ form.hidden_tag() }}
+        <div class="form-fields-group">
+            <div class="form-field">
+                {{ form.nakshatra.label }}
+                {{ form.nakshatra(class="form-control") }}
+            </div>
+            <div class="form-field">
+                {{ form.house.label }}
+                {{ form.house(class="form-control") }}
+            </div>
+            <div class="form-field">
+                {{ form.planet.label }}
+                {{ form.planet(class="form-control") }}
+            </div>
+            <div class="field-group">
+                <div class="form-field">
+                    {{ form.house_strengths.label }}
+                    {{ form.house_strengths(class="form-control") }}
+                </div>
+                <div class="form-field">
+                    {{ form.planet_strengths.label }}
+                    {{ form.planet_strengths(class="form-control") }}
+                </div>
+
+            </div>
+            <div class="field-group">
+                <div class="form-field">
+                    {{ form.ishtaphala.label }}
+                    {{ form.ishtaphala(class="form-control") }}
+                </div>
+                <div class="form-field">
+                    {{ form.kashtaphala.label }}
+                    {{ form.kashtaphala(class="form-control") }}
+                </div>
+            </div>
+            <div class="form-field">
+                {{ form.submit(class="form-control submit") }}
+            </div>
+        </div>
+    </form>
+</section>
+<section>
+    <h2>Resultados:</h2>
+    <p>Nakshatra: {{ nakshatra }}</p>
+    <p>Casa: {{ house }}</p>
+    <p>Planetas:</p>
+    <ul>
+        {% for planet in planets %}
+        <li>{{ planet }}</li>
+        {% endfor %}
+    </ul>
+    <p>Força: {{ strength }}</p>
+    <p>Tipo de ishtaphala: {{ ishtaphala }}</p>
+    <p>Kashtaphala: {{ kashtaphala }}</p>
+    <p>casa: {{ verifica_casa }}</p>
+
+    <a href="{{ url_for('main.download', nakshatra=form.nakshatra.data) }}">Baixar PDF</a>
+</section>
+{% endblock content %}

@@ -13,11 +13,11 @@ class PlanetPhala:
         "NENHUM",
     ]
 
-    def __init__(self, planet: List[str], ishtaphala: str, kashtaphala: str, strenghts: str):
+    def __init__(self, planet: List[str], ishtaphala: str, kashtaphala: str, strengths: str):
         self._planet = planet
         self._ishtaphala = self._parse_value(ishtaphala)
         self._kashtaphala = self._parse_value(kashtaphala)
-        self._strenghts = self._parse_value(strenghts)
+        self._strengths = self._parse_value(strengths)
         self._description = None
 
     def _parse_value(self, value: str) -> float:

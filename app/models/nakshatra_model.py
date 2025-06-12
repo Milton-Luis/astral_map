@@ -1,5 +1,6 @@
 from app.extensions.pdf_utils import CreatePDF
-from astral_map.app.utils.helpers.utils import extract_text_by_title, open_file
+from app.utils.pdf.loader import PDFLoader
+from app.utils.pdf.reader import PDFFileReader
 from dynaconf import settings
 
 
@@ -34,9 +35,11 @@ class Nakshatra:
         "REVATI",
     ]
 
+    pdf_loader = PDFLoader()
+    pdf_reader = PDFFileReader(pdf_loader)
+
     def __init__(self, lord):
         self._lord = lord
-        self._file_path = settings.RESOURCES_PATH
 
     def create_nakshatras_complete_text(self):
         texts = [
@@ -52,23 +55,17 @@ class Nakshatra:
         return pdf_buffer.create_pdf()
 
     def _read_nakshatra_base_text_pdf(self):
-        reader = open_file(self._file_path, settings.NAKSHATRA_BASE_TEXT)
-        return reader
+        return self.pdf_loader.load_pdf_text(settings.NAKSHATRA_BASE_TEXT)
 
     def _read_initial_text_pdf(self):
-        reader = open_file(
-            self._file_path, settings.VEDIC_ASTROLOGY_BASE_TEXT
-        )
-        return reader
+        return self.pdf_loader.load_pdf_text(settings.VEDIC_ASTROLOGY_BASE_TEXT)
 
     def _read_capa_pdf(self):
-        reader = open_file(self._file_path, settings.CAPA_CONTENT)
-        return reader
+        return self.pdf_loader.load_pdf_text(settings.CAPA_CONTENT)
 
     def _select_nakshatra_text_pdf(self):
         if self._lord in self.nakshatras:
-            extracted_text = extract_text_by_title(
-                pdf_path=self._file_path,
+            extracted_text = self.pdf_reader.extract_text_by_title(
                 filename=settings.NAKSHATRA_CONTENT,
                 title=self._lord,
                 title_list=self.nakshatras,

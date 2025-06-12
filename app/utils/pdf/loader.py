@@ -5,13 +5,12 @@ from dynaconf import settings
 
 class PDFLoader:
 
-    def __init__(self, filename:str):
+    def __init__(self):
         self._file_path = settings.RESOURCES_PATH
-        self._filename = filename
 
 
     def load_pdf_text(self, filename: str):
-        base_path = os.path.abspath(self.file_path)
+        base_path = os.path.abspath(self._file_path)
         file_path = os.path.join(base_path, filename)
 
         if not os.path.exists(file_path):

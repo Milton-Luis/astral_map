@@ -8,9 +8,15 @@ NAKSHATRA_BASE_TEXT = "base_text/nakshatra_base_text.pdf"
 PLANETPHALA_BASE_TEXT = "base_text/planetphala_base_text.pdf"
 
 # [PDF SETTINGS]
-PDF_TITLE = "Astral Map"
+PDF_TITLE = "Mapa Astral Védico"
 PDF_AUTHOR = "Pessoa 1"
-PDF_SYSTEM_CREATOR = "Astral Map System"
+PDF_SYSTEM_CREATOR = "Mapa Astral Védico"
+PDF_INDEX_TITLE = "Índice"
+
+# [PDF COVER STYLES]
+PDF_COVER_TITLE= "COVER TITLE"
+PDF_COVER_FONT_SIZE = 24
+PDF_COVER_SPACE_AFTER = 20
 
 # [PDF styles SETTINGS]
 FIRST_LETTER_INDENT_MM = 10
@@ -20,7 +26,10 @@ TEXT_FONT_NAME = "Helvetica"
 TEXT_FONT_SIZE = 12
 
 
-
+IMAGE_1_PATH = "app/static/images/image_1.jpg"
+IMAGE_2_PATH = "app/static/images/image_2.jpg"
+IMAGE_3_PATH  = "app/static/images/image_3.jpg"
+IMAGE_4_PATH = "app/static/images/image_4.jpg"
 
 # [development]
 

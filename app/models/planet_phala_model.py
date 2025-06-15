@@ -13,7 +13,9 @@ class PlanetPhala:
         "NENHUM",
     ]
 
-    def __init__(self, planet: List[str], ishtaphala: str, kashtaphala: str, strengths: str):
+    def __init__(
+        self, planet: List[str], ishtaphala: str, kashtaphala: str, strengths: str
+    ):
         self._planet = planet
         self._ishtaphala = self._parse_value(ishtaphala)
         self._kashtaphala = self._parse_value(kashtaphala)
@@ -29,6 +31,7 @@ class PlanetPhala:
     def _read_planet_file(self):
         if self._planet in self.planet_list:
             ...
+
 
 planet = "Sol"
 # value_1 = "None"

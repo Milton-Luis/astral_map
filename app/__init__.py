@@ -15,7 +15,7 @@ def create_app():
     # configuration.load_extensions(app)
     register_blueprint_on_app(app)
 
-    @app.template_filter('type')
+    @app.template_filter("type")
     def jinja_type(value):
         return type(value).__name__
 

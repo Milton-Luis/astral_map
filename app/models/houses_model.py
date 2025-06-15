@@ -27,10 +27,8 @@ class AstroHouse:
             if number == self._house:
                 return description
         return "Casa desconhecida"
-    
 
     def check_strengths(self, strength: float):
-
         if strength > 1:
             return self._show_house()
         elif self._strengths > 2 and self._strengths < 4:
@@ -39,11 +37,10 @@ class AstroHouse:
             ...
 
     def check_house_and_planet(self):
-
         """
         SE A CASA FOR 1
-	        SE A CASA TIVER FORÇA X>
-		        COLOCAR PLANETAS DA RESPECTIVA CASA
+                SE A CASA TIVER FORÇA X>
+                        COLOCAR PLANETAS DA RESPECTIVA CASA
 
         """
         match self._house:

@@ -1,6 +1,7 @@
 from app.extensions.pdf_utils import CreatePDF
 from app.utils.pdf.loader import PDFLoader
 from app.utils.pdf.reader import PDFFileReader
+from app.utils.pdf.generate import PDFGenerator
 from dynaconf import settings
 
 
@@ -42,17 +43,48 @@ class Nakshatra:
         self._lord = lord
 
     def create_nakshatras_complete_text(self):
-        texts = [
-            self._read_capa_pdf(),
-            self._read_initial_text_pdf(),
-            self._read_nakshatra_base_text_pdf(),
-            self._select_nakshatra_text_pdf(),
+    # Textos em ordem de estrutura
+        initial_text = self._read_initial_text_pdf()  # explicação geral
+        nakshatra_intro = self._read_nakshatra_base_text_pdf()  # sobre nakshatra
+        selected_nakshatra = self._select_nakshatra_text_pdf()  # nakshatra pessoal
+
+        # Mock de textos restantes (até ter os arquivos)
+        ishta_intro = "Explicação sobre Ishtaphala e Kashtaphala"
+        ishta_content = "Texto completo dos Ishtaphala e Kashtaphala"
+        casa_intro = "Explicação sobre Casas"
+        casa_content = "Texto completo das Casas"
+
+        # Títulos para as seções principais (registradas no índice)
+        titles = [
+            "",  # título para bloco nakshatra
+            "Ishtaphala e Kashtaphala",
+            "Casas"
         ]
-        titles = ["", "Sobre o mapa", "NAKSHATRA LUNAR", self._lord]
 
-        pdf_buffer = CreatePDF(titles, texts)
+        # Textos: [explicação, nakshatra_intro, nakshatra_text, ishta_intro, ishta_text, casa_intro, casa_text]
+        texts = [
+            initial_text,
+            nakshatra_intro,
+            selected_nakshatra,
+            ishta_intro,
+            ishta_content,
+            casa_intro,
+            casa_content
+        ]
 
-        return pdf_buffer.create_pdf()
+        # Se quiser incluir imagens, coloque caminhos aqui (opcional)
+        images = [
+            settings.IMAGE_1_PATH,
+            settings.IMAGE_2_PATH,
+            settings.IMAGE_3_PATH,
+            settings.IMAGE_4_PATH
+        ]
+
+        pdf_generator = PDFGenerator(titles, texts, images)
+        return pdf_generator.create_pdf()
+
+
+
 
     def _read_nakshatra_base_text_pdf(self):
         return self.pdf_loader.load_pdf_text(settings.NAKSHATRA_BASE_TEXT)

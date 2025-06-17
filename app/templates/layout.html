@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='dist/bootstrap-5.3.6-dist/css/') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='dist/bootstrap-5.3.6-dist/css/bootstrap.min.css') }}">
     
     {% if title %}
     <title>{{ title }}</title>
@@ -13,9 +13,38 @@
 </head>
 
 <body>
-    <nav class="na"></nav>
+    <nav class="navbar-display-config-values">
+        <div class="display-config-values">
+            <div class="house">
+                <div class="house-config-value">
+                    maior valor 1
+                </div>
+                <div class="house-config-value">
+                    médio valor 2
+                </div>
+                <div class="house-config-value">
+                    baixo valor 3
+                </div>
+            </div>
+            <div class="planet">
+                <div class="planet">
+                <div class="planet-config-value">
+                    maior valor 1
+                </div>
+                <div class="planet-config-value">
+                    médio valor 2
+                </div>
+                <div class="planet-config-value">
+                    baixo valor 3
+                </div>
+            </div>
+            </div>
+        </div>
+    </nav>
     <main>
         {% block content %}
+        
+      
         {% endblock content %}
     </main>
     <script src="{{ url_for('static', filename='dist/bootstrap-5.3.6-dist/js/bootstrap.bundle.min.js') }}"></script>

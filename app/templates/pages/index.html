@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 
 {% block content %}
+{% include "includes/house_modal.html" %}
 <section class="mirror-forms">
     <form action="{{ url_for('main.index') }}" method="POST">
         {{ form.hidden_tag() }}
@@ -9,33 +10,60 @@
                 {{ form.nakshatra.label }}
                 {{ form.nakshatra(class="form-control") }}
             </div>
-            <div class="form-field">
-                {{ form.house.label }}
-                {{ form.house(class="form-control") }}
-            </div>
-            <div class="form-field">
-                {{ form.planet.label }}
-                {{ form.planet(class="form-control") }}
-            </div>
-            <div class="field-group">
-                <div class="form-field">
-                    {{ form.house_strengths.label }}
-                    {{ form.house_strengths(class="form-control") }}
-                </div>
-                <div class="form-field">
-                    {{ form.planet_strengths.label }}
-                    {{ form.planet_strengths(class="form-control") }}
-                </div>
 
-            </div>
-            <div class="field-group">
-                <div class="form-field">
-                    {{ form.ishtaphala.label }}
-                    {{ form.ishtaphala(class="form-control") }}
-                </div>
-                <div class="form-field">
-                    {{ form.kashtaphala.label }}
-                    {{ form.kashtaphala(class="form-control") }}
+            <div class="form-field">
+
+                <div class="modal-body accordion" id="accordionExample">
+                    {% set house_number = [
+                    "1ª Casa: A Casa do Eu (Tanu Bhava)",
+                    "2ª Casa: Riqueza e Família (Dhana Bhava)",
+                    ] %}
+
+                    {% for house_form in form.houses %}
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="heading{{ loop.index }}">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapse{{ loop.index }}" aria-expanded="false"
+                                aria-controls="collapse{{ loop.index }}">
+                                {{ house_number[loop.index0] }}
+                            </button>
+                        </h2>
+                        <div id="collapse{{ loop.index }}" class="accordion-collapse collapse"
+                            aria-labelledby="heading{{ loop.index }}" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <div class="form-field">
+                                    {{ house_form.house.label(class="form-label") }}
+                                    {{ house_form.house(class="input-control", readonly=True,
+                                    value=house_number[loop.index0]) }}
+                                </div>
+                                <div class="form-field planet-field">
+                                    {{ house_form.planet.label(class="form-label ") }}
+                                    {{ house_form.planet(class="input-control") }}
+                                </div>
+                                <div class="field-group">
+                                    
+                                    <div class="form-field">
+                                        {{ house_form.house_strengths.label(class="form-label") }}
+                                        {{ house_form.house_strengths(class="input-control") }}
+                                    </div>
+                                    <div class="form-field">
+                                        {{ house_form.planet_strengths.label(class="form-label") }}
+                                        {{ house_form.planet_strengths(class="input-control") }}
+                                    </div>
+                                
+                                    <div class="form-field">
+                                        {{ house_form.ishtaphala.label(class="form-label") }}
+                                        {{ house_form.ishtaphala(class="input-control") }}
+                                    </div>
+                                    <div class="form-field">
+                                        {{ house_form.kashtaphala.label(class="form-label") }}
+                                        {{ house_form.kashtaphala(class="input-control") }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
                 </div>
             </div>
             <div class="form-field">
@@ -44,20 +72,38 @@
         </div>
     </form>
 </section>
+{% if houses_data %}
 <section>
-    <h2>Resultados:</h2>
-    <p>Nakshatra: {{ nakshatra }}</p>
-    <p>Casa: {{ house }}</p>
-    <p>Planetas:</p>
-    <ul>
-        {% for planet in planets %}
-        <li>{{ planet }}</li>
-        {% endfor %}
-    </ul>
-    <p>Força: {{ strength }}</p>
-    <p>Tipo de ishtaphala: {{ ishtaphala }}</p>
-    <p>Kashtaphala: {{ kashtaphala }}</p>
+    <p><strong>Nakshatra:</strong> {{ nakshatra }}</p>
+    {% for casa in houses_data %}
+    <div class="modal-body accordion" id="accordionExample"></div>
+    <div class="card form-field">
+        <div class="card-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#results{{ loop.index }}" aria-expanded="false"
+                aria-controls="collapse{{ loop.index }}">{{ casa.house }}
+            </button>
+        </div>
+        <div id="results{{ loop.index }}" class="accordion-collapse collapse" aria-labelledby="heading{{ loop.index }}"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <p><strong>Planetas:</strong> {{ casa.planets | join(", ") }}</p>
+                <p><strong>Força da Casa:</strong> {{ casa.house_strength }}</p>
+                <p><strong>Força dos Planetas:</strong> {{ casa.planet_strength }}</p>
+                <p><strong>Ishtaphala:</strong> {{ casa.ishtaphala }}</p>
+                <p><strong>Kashtaphala:</strong> {{ casa.kashtaphala }}</p>
+            </div>
+        </div>
+    </div>
+    </div>
+    {% endfor %}
+</section>
+{% else %}
+<section>
+    <p>Nenhum dado disponível. Por favor, preencha o formulário e envie.</p>
+{% endif %}
 
-    <a href="{{ url_for('main.download', nakshatra=form.nakshatra.data) }}">Baixar PDF</a>
+
+<a href="{{ url_for('main.download', nakshatra=form.nakshatra.data) }}">Baixar PDF</a>
 </section>
 {% endblock content %}

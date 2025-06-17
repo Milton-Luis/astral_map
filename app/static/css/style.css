@@ -10,6 +10,24 @@ body {
 	/* background: linear-gradient(to right, black, gray); */
 }
 
+.navbar-display-config-values{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	height: 50px;
+	width: 100%;
+	margin-top: 10px;
+}
+.display-config-values{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	background-color: gray;
+	width: 50%;
+
+}
+
 main {
 	display: flex;
 	flex-flow: row wrap;
@@ -44,7 +62,7 @@ main {
 	display: flex;
 	flex-direction: column;
 }
-.form-fields-group > .form-field:not(.field-group):first-child > .form-control {
+.form-fields-group > .form-field:not(.field-group):first-child > .input-control {
 	border-top-left-radius: 15px;
 	border-top-right-radius: 15px;
 	border-bottom-left-radius: 2px;
@@ -53,7 +71,7 @@ main {
 
 .form-fields-group
 	> .form-field:not(.field-group):nth-child(3)
-	> .form-control {
+	> .input-control {
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: flex-start;
@@ -62,26 +80,34 @@ main {
 	height: auto;
 }
 
-.form-control {
+.input-control {
 	height: 35px;
 	padding: 5px 8px;
 	border-radius: 15px;
 }
-
-.form-control li {
+.planet-field{
+	display: flex;
+	
+}
+.planet-field>.input-control{
+	display: flex;
+	flex-flow: row wrap;
+}
+.input-control li {
 	display: flex;
 	flex-direction: column-reverse;
 }
 
 .field-group {
 	display: flex;
+	flex-flow: row wrap;
 	gap: 12px;
 }
 
 .field-group .form-field {
 	display: flex;
 	justify-content: space-around;
-	width: 100%;
+	width: 40%;
 }
 
 .submit {
@@ -89,4 +115,10 @@ main {
 	font-size: 12pt;
 	height: 50px;
 	border-radius: 25px;
+}
+
+.config-icon{
+	height: 50px;
+	align-self: flex-end;
+	justify-self: flex-end;
 }

@@ -18,7 +18,7 @@ class AstroHouse:
     ]
 
     def __init__(self, house, strengths, planet: PlanetPhala):
-        self._house = int(house)
+        self._house = house
         self._strengths = strengths
         self._planet = planet
 
